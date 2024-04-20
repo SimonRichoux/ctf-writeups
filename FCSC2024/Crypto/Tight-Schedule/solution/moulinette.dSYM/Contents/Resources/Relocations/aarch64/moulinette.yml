@@ -1,0 +1,25 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     moulinette
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _canonical_to_invariant, symObjAddr: 0x0, symBinAddr: 0x100002128, symSize: 0x2C4 }
+  - { offsetInCU: 0x3F, offset: 0x3F, size: 0x8, addend: 0x0, symName: _A, symObjAddr: 0x1A7A, symBinAddr: 0x100003BC6, symSize: 0x0 }
+  - { offsetInCU: 0x84, offset: 0x84, size: 0x8, addend: 0x0, symName: _A_inv, symObjAddr: 0x1B7A, symBinAddr: 0x100003CC6, symSize: 0x0 }
+  - { offsetInCU: 0x99, offset: 0x99, size: 0x8, addend: 0x0, symName: _S, symObjAddr: 0x1C7A, symBinAddr: 0x100003DC6, symSize: 0x0 }
+  - { offsetInCU: 0xBB, offset: 0xBB, size: 0x8, addend: 0x0, symName: _RCON, symObjAddr: 0x1D7A, symBinAddr: 0x100003EC6, symSize: 0x0 }
+  - { offsetInCU: 0xD7, offset: 0xD7, size: 0x8, addend: 0x0, symName: _canonical_to_invariant, symObjAddr: 0x0, symBinAddr: 0x100002128, symSize: 0x2C4 }
+  - { offsetInCU: 0x13F, offset: 0x13F, size: 0x8, addend: 0x0, symName: _invariant_to_canonical, symObjAddr: 0x2C4, symBinAddr: 0x1000023EC, symSize: 0x2A4 }
+  - { offsetInCU: 0x1A7, offset: 0x1A7, size: 0x8, addend: 0x0, symName: _pi_i, symObjAddr: 0x568, symBinAddr: 0x100002690, symSize: 0xAC }
+  - { offsetInCU: 0x22A, offset: 0x22A, size: 0x8, addend: 0x0, symName: _print_pi_i, symObjAddr: 0x614, symBinAddr: 0x10000273C, symSize: 0x1A4 }
+  - { offsetInCU: 0x2E3, offset: 0x2E3, size: 0x8, addend: 0x0, symName: _print_vector, symObjAddr: 0x7B8, symBinAddr: 0x1000028E0, symSize: 0x144 }
+  - { offsetInCU: 0x317, offset: 0x317, size: 0x8, addend: 0x0, symName: _xor, symObjAddr: 0x8FC, symBinAddr: 0x100002A24, symSize: 0x104 }
+  - { offsetInCU: 0x338, offset: 0x338, size: 0x8, addend: 0x0, symName: _xor, symObjAddr: 0x8FC, symBinAddr: 0x100002A24, symSize: 0x104 }
+  - { offsetInCU: 0x350, offset: 0x350, size: 0x8, addend: 0x0, symName: _xor_4_bytes, symObjAddr: 0xA00, symBinAddr: 0x100002B28, symSize: 0x44 }
+  - { offsetInCU: 0x371, offset: 0x371, size: 0x8, addend: 0x0, symName: _xor_4_bytes, symObjAddr: 0xA00, symBinAddr: 0x100002B28, symSize: 0x44 }
+  - { offsetInCU: 0x3C1, offset: 0x3C1, size: 0x8, addend: 0x0, symName: _round_function, symObjAddr: 0xA44, symBinAddr: 0x100002B6C, symSize: 0xE0 }
+  - { offsetInCU: 0x55D, offset: 0x55D, size: 0x8, addend: 0x0, symName: _expandKey, symObjAddr: 0xB24, symBinAddr: 0x100002C4C, symSize: 0x110 }
+  - { offsetInCU: 0x6E9, offset: 0x6E9, size: 0x8, addend: 0x0, symName: _encrypt, symObjAddr: 0xC34, symBinAddr: 0x100002D5C, symSize: 0x418 }
+  - { offsetInCU: 0x8C9, offset: 0x8C9, size: 0x8, addend: 0x0, symName: _compare, symObjAddr: 0x104C, symBinAddr: 0x100003174, symSize: 0x10C }
+  - { offsetInCU: 0x8EC, offset: 0x8EC, size: 0x8, addend: 0x0, symName: _compare, symObjAddr: 0x104C, symBinAddr: 0x100003174, symSize: 0x10C }
+  - { offsetInCU: 0xA5F, offset: 0xA5F, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x1158, symBinAddr: 0x100003280, symSize: 0x8CC }
+...
