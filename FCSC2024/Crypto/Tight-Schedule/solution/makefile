@@ -1,5 +1,5 @@
 CFLAGS = -g -Wall -O3 -fopenmp
 main: moulinette.c
 	$(CC) $(CFLAGS) moulinette.c -o moulinette
-clean: tea
+clean: moulinette
 	rm moulinette
