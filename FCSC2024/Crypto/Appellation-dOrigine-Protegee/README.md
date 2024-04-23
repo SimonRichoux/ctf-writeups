@@ -128,4 +128,4 @@ Q = gcd(pow(w, p, P) - w, P)
 u = b(w=Q.any_root())
 ```
 
-This allows to solve the CICO problem, see [wu.sage](Appellation-dOrigine-Protegee/wu.sage) for the details. 
+This allows to solve the CICO problem, see [wu.sage](wu.sage) for the details. 
