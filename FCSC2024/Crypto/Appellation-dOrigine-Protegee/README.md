@@ -78,7 +78,7 @@ def aop_inv(X):
     return X
 ```
 
-Now if we attempt to feed the multinomial `[0, w, x, y, z]` to the function `aop_inv`, we observe that sage cannot end the computations because the multinomial has degree $`\approx 2^{45}`$​ which is way to large to be reasonably computed. 
+Now if we attempt to feed the multinomial `[0, w, x, y, z]` to the function `aop_inv`, we observe that sage cannot end the computations because the multinomial has degree $`\approx 2^{45}`$​ which is way too large to be reasonably computed. 
 
 **Skipping the last 3 rounds**
 
