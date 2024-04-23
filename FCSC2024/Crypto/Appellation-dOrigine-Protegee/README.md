@@ -18,10 +18,10 @@
 
 **Introduction**
 
-The goal of this challenge is to solve the Constrained Input/Constrained Output (CICO) problem for a handcrafted function defined in `appellation-origine-protegee.py`. For a given function $`P:\mathbb{F}_q^t \to \mathbb{F}_q^t`$ and $`u<t`$ the CICO problem can be formulated as:
+The goal of this challenge is to solve the Constrained Input/Constrained Output (CICO) problem for a handcrafted function defined in `appellation-origine-protegee.py`. For a given function $`P:\mathbb{F}_q^t \to \mathbb{F}_q^t`$ and $` u < t `$ the CICO problem can be formulated as finding:
 
 ``` math
-\text{Finding } X, Y\in \mathbb{F}_q^{t-u} \text{ s.t. } P(0^u, X) = (0^u, Y).
+X, Y\in \mathbb{F}_q^{t-u} \quad P(0^u, X) = (0^u, Y).
 ```
 
 This problem is motivated by blockchain applications where primitives are optimized to operate on large fields rather than binary ones. These "Arithmetization-Oriented Primitives" are usually designed around low degree polynomials and their security is based on the difficulty of solving CICO. [See](https://tosc.iacr.org/index.php/ToSC/article/view/8695/8287) for a wider introduction.
@@ -128,4 +128,4 @@ Q = gcd(pow(w, p, P) - w, P)
 u = b(w=Q.any_root())
 ```
 
-This allows to solve the CICO problem, see [wu.sage](Appellation-d'Origine-Protégée/wu.sage) for the details. 
+This allows to solve the CICO problem, see [wu.sage](Appellation-dOrigine-Protegee/wu.sage) for the details. 
