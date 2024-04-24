@@ -31,22 +31,22 @@ From the challenge description, we are told that a file was encrypted using a st
 - I tried RC4
 - Looked at some stream ciphers enlisted in the [wikipedia page](https://en.wikipedia.org/wiki/Stream_cipher)
 
-However after thinking a bit, I stood upon the detail that the key had the unsual length of 80 bits, so I concluded that a deprecated stream cipher must have been used in the challenge. The fact that we only have a single encrypted file to be decrypted also led me in the idea that this stream cipher should also be very easy to break.
+However after thinking a bit, I stood upon the detail that the key had the unsual length of 80 bits, so I concluded that a deprecated stream cipher must have been used in the challenge. The fact that we only have a single encrypted file to be decrypted also led me to the idea that this stream cipher should also be very easy to break.
 
 - Unfortunately another [wikipedia page](https://en.wikipedia.org/wiki/Category:Broken_stream_ciphers) did not list any relevant broken stream cipher
 - And a [webpage](https://cr.yp.to/streamciphers/attacks.html) from the ECRYPT Stream Cipher Project (eSTREAM) project could not list any stream cipher broken with just a single cipher
 
-After googling a while I finally found a [webpage](https://www.cryptomuseum.com/crypto/algo/tea/1.htm#:~:text=TEA1%2C%20short%20for%20TETRA%20Encryption,Telecommunications%20Standards%20Institute%20(ETSI).) on the TEA1 stream cipher which was identified as having an intentional backdoor. This quickly lead to a [github repository](https://github.com/MidnightBlueLabs/TETRA_crypto/tree/main) with a C implementation of the stream cipher. After running this stream cipher with the given key/iv pair I could see that the output of the stream cipher was matching the one given as an example. Hurray!
+After googling a while I finally found a [webpage](https://www.cryptomuseum.com/crypto/algo/tea/1.htm#:~:text=TEA1%2C%20short%20for%20TETRA%20Encryption,Telecommunications%20Standards%20Institute%20(ETSI).) on the TEA1 stream cipher which was identified as having an intentional backdoor. This quickly lead me to a [github repository](https://github.com/MidnightBlueLabs/TETRA_crypto/tree/main) with a C implementation of the stream cipher. After running this stream cipher with the given key/iv pair I could see that the output of the stream cipher was matching the one given as an example. Hurray!
 
 **The backdoor**
 
-The TEA1 algorithm is a LFSR-like stream cipher with some additional non-linear layers. The weird quirck is that the 80-bit long key is first reduced to a 32-bit key which is then used in the algorithm. This means that we only need to bruteforce the reduced key in order to retrieve the plaintext.
+The TEA1 algorithm is a LFSR-like stream cipher with some additional non-linear layers. The quirck is that the 80-bit long key is first reduced to a 32-bit key which is then used in the algorithm. This means that we only need to bruteforce the reduced key in order to retrieve the plaintext.
 
  ![tea1_struct](img/tea1_struct.svg)
 
 **Bruteforce implementation**
 
-The idea was to bruteforce the 4 first bytes of the stream cipher which we know because they correpond to the header of a RIFF file. 
+The idea was to bruteforce the 4 first bytes of the stream cipher which we know because they correpond to the header of a wav file. 
 
 The  [github repository](https://github.com/MidnightBlueLabs/TETRA_crypto/tree/main) already had a very well written implementation of TEA1, the only weird detail being that the non-linear layers `F1`, `F2` and `B` were regenerated at each encryption, after trivially precomputing it once, the attack was feasible in few minutes. See [source](tetracrypto/tea1.c) for the implementation. 
 
