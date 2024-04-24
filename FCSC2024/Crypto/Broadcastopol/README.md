@@ -42,7 +42,7 @@ After googling a while I finally found a [webpage](https://www.cryptomuseum.com/
 
 The TEA1 algorithm is a LFSR-like stream cipher with some additional non-linear layers. The weird quirck is that the 80-bit long key is first reduced to a 32-bit key which is then used in the algorithm. This means that we only need to bruteforce the reduced key in order to retrieve the plaintext.
 
- ![tea1_struct](/Users/simonrichoux/Documents/Personnel/CTF/ctf-writeups/FCSC2024/Crypto/Broadcastopol/img/tea1_struct.svg)
+ ![tea1_struct](img/tea1_struct.svg)
 
 **Bruteforce implementation**
 
