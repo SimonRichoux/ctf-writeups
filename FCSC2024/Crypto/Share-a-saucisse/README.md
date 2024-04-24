@@ -65,5 +65,5 @@ b_0 & b_1 & \cdots & b_{16} & 0 & 2^{128}\\
 
 Note that we added a penalization to the second vector (coefficients of $`S`$​) so that it is only used once while looking for a short vector of the lattice.
 
-Writing this lattice in sage and using the LLL algorithm allows to recover the secret $`k`$, see [wu.sage](Share-a-saucisse/wu.sage) for the details.
+Writing this lattice in sage and using the LLL algorithm allows to recover the secret $`k`$, see [wu.sage](wu.sage) for the details.
 
