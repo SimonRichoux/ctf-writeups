@@ -55,7 +55,7 @@ B\end{bmatrix} v = \begin{bmatrix} Av\\
 Bv\end{bmatrix} = w.
 ```
 
-Now as $A$ (or $B$) are square matrices, they can inverted, so that the upper (or the lower) part of the encoded message can be chosen. This divides the log complexity of forging a signature by a factor of 2. However, we can do better. If we regroup in $A$ the larger bytes of the signature, we will only need to bruteforce the smaller bytes of the signature, this reduces the complexity to $`2^{17}`$, which takes less than a second with the following code.
+Now as $A$ (or $B$) are square matrices, they can inverted, so that the upper (or the lower) part of the encoded message can be chosen. This divides the log complexity of forging a signature by a factor of 2. However, we can do better. If we regroup in $A$ the larger bytes of the signature, we will only need to bruteforce the smaller bytes of the signature, this reduces the complexity to $`2^{17}`$, which takes few seconds with the following code.
 
 ```python
 w = M * message
