@@ -23,7 +23,7 @@ Let's look at the generation algorithm of the polynomial in `share-a-saucisse.py
 
 ``` python
 def __init__(self, secret, k):
-		self.p = 931620319462745440509259849070939082848977
+    self.p = 931620319462745440509259849070939082848977
     self.k = k
     self.polynomial = [ int.from_bytes(secret) ]
     for _ in range(k):
