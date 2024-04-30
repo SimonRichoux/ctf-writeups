@@ -1,8 +1,8 @@
-# AdveRSArial Crypto (Kiddo)
+# AdveRSArial Crypto (Baby)
 
 | Category | Author     | Difficulty | Solves | Points |
 | -------- | ---------- | ---------- | ------ | ------ |
-| Crypto   | Maxime, \j | ⭐️          | 36     | 413    |
+| Crypto   | Maxime, \j | ⭐️          | 113    | 258    |
 
 > J’ai perfectionné mes connaissances sur RSA, mais je ne suis pas sûr que ma manière creuse de générer les nombres soit intelligente. Vous confirmez ?
 
