@@ -34,7 +34,7 @@ Sage informs us that the curve $`\mathcal E`$ has rank 1, and is able to compute
 
 However, we are only interested in positive solutions $`u, v`$, this happens if, and only if its correponding point on $`\mathcal E`$ has coordinates $`(x, y)`$ satisfying $`|y| \le 36\cdot 94`$.
 
-I then looked at multiples up to 100 of $`G`$​ and took the smallest found (which was 6509-bit long!), which solved the challenge, see below.
+I then looked at multiples up to 100 of $`G`$​ and took the smallest found (which was 6509-bit long!), which solved the challenge, see [script](wu.sage).
 
 **Aftermath: Did we really find the smallest solution?**
 
@@ -47,7 +47,7 @@ My empiric explanation was that the $`x`$-coordinate of $`[n]G`$ has increasing 
 There is actually some interesting math behind this intuition, one can define the *height* of a fraction $p/q$ as 
 
 ```   math
-H(p/q) = \max (|x|, |y|)
+H(p/q) = \max (|p|, |q|)
 ```
 
 therefore, one may define the *height (or Weil height)* of a (rational) elliptic curve point as
