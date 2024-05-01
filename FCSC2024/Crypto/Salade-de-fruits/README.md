@@ -34,9 +34,7 @@ Sage informs us that the curve $`\mathcal E`$ has rank 1, and is able to compute
 
 However, we are only interested in positive solutions $`u, v`$, this happens if, and only if its correponding point on $`\mathcal E`$ has coordinates $`(x, y)`$ satisfying $`|y| \le 36\cdot 94`$.
 
-I then looked at multiples up to 100 of $`G`$​ and took the smallest found (which was 6509-bit long!), which solved the challenge, see [script](wu.sage).
-
-
+I then looked at multiples up to 100 of $`G`$​ and took the smallest found (which was 6509-bit long!), which solved the challenge, see below.
 
 **Aftermath: Did we really find the smallest solution?**
 
@@ -44,7 +42,7 @@ I then looked at multiples up to 100 of $`G`$​ and took the smallest found (wh
 
 However, nothing except having the correct flag really tells us that the integer $z$ we found is indeed the *smallest* possible solution. How can that be formally proved?
 
-My empiric explanation was that the $`x`$-coordinate of $`[n]G`$ have increasing numerators and denominators with $`n`$. This is simply because adding and doubling points on the elliptic curve will add and multiply fractions resulting in, as a *rule of thumb*, larger fractions. Therefore, our script is working because the first found positive solution on the elliptic curve has the smallest numerators and denominators so is indeed giving the smallest possible solution. But that's not a formal proof. 
+My empiric explanation was that the $`x`$-coordinate of $`[n]G`$ has increasing numerators and denominators with $`n`$. This is simply because adding and doubling points on the elliptic curve will add and multiply fractions resulting in, as a *rule of thumb*, larger fractions. Therefore, our script is working because the first found positive solution on the elliptic curve has the smallest numerators and denominators so is indeed giving the smallest possible solution. But that's not a formal proof. 
 
 There is actually some interesting math behind this intuition, one can define the *height* of a fraction $p/q$ as 
 
@@ -77,7 +75,7 @@ sage: G.height()
 24.8624345645680
 ```
 
-One can elementary property we can check from the definition is that
+One elementary property we can check from the definition is that
 
 ```math
 \hat h([n]P) = n^2 \hat h(P), 
@@ -85,14 +83,14 @@ One can elementary property we can check from the definition is that
 
 which implies that $`\hat h`$ is an increasing function over multiples of a point! 
 
-But how does that relate to our first definition of height? Interestingly, it was proven by the mathematicien Néron in 1965 that the difference $h_x - \hat h$ is always bounded. More concretly, there exists some elementary bounds, the first one given by [Silverman](https://www.ams.org/journals/mcom/1990-55-192/S0025-5718-1990-1035944-5/S0025-5718-1990-1035944-5.pdf) in 1990. Amazingly, Sage can compute that bound using the command `.silverman_height_bound()`!
+But how does that relate to the growth of $`h_x`$? Interestingly, it was proven by the mathematicien Néron in 1965 that the difference $h_x - \hat h$ is always bounded. More concretly, there exists some elementary bounds, the first one given by [Silverman](https://www.ams.org/journals/mcom/1990-55-192/S0025-5718-1990-1035944-5/S0025-5718-1990-1035944-5.pdf) in 1990. Amazingly, Sage can compute that bound using the command `.silverman_height_bound()`!
 
 ```python
 sage: E.silverman_height_bound()
 8.203075982302057
 ```
 
-Combining that bound with the (canonical) height of $`G`$ shows that $`h_x`$ is increasing at a quadratic speed! 
+Combining that bound with the (canonical) height of $`G`$ *proves* that $`h_x`$ is increasing at a quadratic speed! But the proof is not over, we still need to understand the relationship between the size of points in $`\mathcal E`$ and solutions to the equation. 
 
 Recalling that $`u= \frac{a}{c} = \frac{36\cdot 94 + y}{6x}`$ and $`v= \frac{b}{c} = \frac{36\cdot 94 - y}{6x}`$, we can notice that
 
@@ -108,19 +106,22 @@ a^3 + b^3 = (a+b)(a^2- ab + b^2) = 94c^3,
 
 so $`a+b | 94 c^3`$ and $`\gcd(a + b, c)`$ is likely to be of size $`\approx c^{1/3}`$. This seems to be true after checking over random solutions.
 
-Accepting that approximation, this prooves that the height of $[n]G$ is (asymptotically) proportional (with factor $`2/3`$) to the heigth of $`c`$, which can be numerically checked!
+Accepting that approximation, this proves that the height of $[n]G$ is (asymptotically) proportional with factor $`2/3`$ to the heigth of $`c`$, which can be numerically checked!
 
 ```python
-sage: def return_z (P):
+sage: def return_a_b_c (P):
 ....:     N = 94
 ....:     u, v = P[0], P[1]
 ....:     x, y = (36*N + v)/(6*u), (36*N - v)/(6*u)
-....:     return lcm (x.denominator(), y.denominator())
+....:     c = lcm (x.denominator(), y.denominator())
+....:     a = x.numerator() * z / x.denominator()
+....:     b = y.numerator() * z / y.denominator()
+....:     return a, b, c # a^3 + b^3 = 94 * c^3
 ....: 
 sage: def h(g):
 ....:     return max(g.numerator().bit_length(), g.denominator().bit_length())
 ....: 
-sage: [float(h((i*G).x()) / h(return_z(i*G)[2])) for i in range (1, 10)]
+sage: [float(h((i*G).x()) / h(return_a_b_c(i*G)[2])) for i in range (1, 10)]
 [0.72,
  0.6792452830188679,
  0.6701244813278008,
@@ -133,5 +134,6 @@ sage: [float(h((i*G).x()) / h(return_z(i*G)[2])) for i in range (1, 10)]
 
 ```
 
+**Conclusion**
 
-
+Therefore, we proved that the solution corresponding the points of $`[n]G`$ increases with quadratic speed, so it was reasonible to expect the first positive solution to be the smallest possible one. This could be a complete rigorous proof if one could prove that $`\gcd(a + b, c) \approx c^{1/3}`$ , if any reader of this wu had an insight I would be very interested!
