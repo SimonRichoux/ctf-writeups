@@ -20,7 +20,7 @@ This is a classic RSA challenge featuring a sparse RSA modulus. It was already f
 
 In our case the public modulus is sparse in base 2:
 
-```console
+```python
 sage: N = 1797706850172487891975376615658152699342035621208510891791224143990647
 ....: 34715990794430000078278988633398024403072323955508476586487162411822366599
 ....: 11141253453943074013719626524237112871455836208288252000174768522265586381
@@ -32,14 +32,14 @@ sage: N.str(base=2)
 
 We can then write `N` as a polynomial in the following way
 
-```
+```python
 R.<X> = PolynomialRing(ZZ)
 T = sum([int(a) * X^i for i, a in enumerate(N.digits(2))])
 ```
 
 Which sage very quickly can factor
 
-```console
+```python
 sage: factor(T)
 (X^511 + X^494 + X^445 + X^359 + X^320 + X^49 + 1) * (X^513 + X^348 + X^327 + X^313 + X^249 + X^212 + 1)
 ```
