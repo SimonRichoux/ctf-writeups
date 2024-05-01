@@ -15,9 +15,5 @@
 
 ## Write-up
 
-**Introduction**
-
-This challenge is the follow-up from the challenge El Gamal Fait 2/2 signature scheme. The signature implementation is identical, however we are aksed to forge a signature for a randomized message so the previous attack work
-
-**Existential forgery against**
+TODO
 

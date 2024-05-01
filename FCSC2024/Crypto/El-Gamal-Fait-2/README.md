@@ -18,4 +18,4 @@ This challenge is the follow-up from the challenge El Gamal Fait 2/2 signature s
 
 **Existential forgery against**
 
-
+TODO

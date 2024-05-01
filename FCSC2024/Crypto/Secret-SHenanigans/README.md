@@ -6,9 +6,9 @@
 | -------- | ------ | ---------- | ------ | ------ |
 | Crypto   | rbe    | ⭐️⭐️⭐️        | 10     | 477    |
 
-> Nous avons réussi à écouter notre cible lorsqu’elle s’est connectée à son serveur distant. Parviendrez-vous à retrouver son mot de passe ? Le flag est `FCSC{H}` où `H` est le haché du mot de passe par SHA256.
+> Un malfrat, versé dans la technique, se méfie des protocoles de canaux sécurisés éprouvés comme SSH ou TLS : “ils sont tous certainement backdoorés” pense t’il. Comme il doit régulièrement recevoir des informations confidentielles de collègues à lui, il a développé son propre protocole d’établissement de canal sécurisé permettant à des clients anonymes d’envoyer à son serveur ces informations confidentielles.
 >
-> **Note :** Il est inutile de tester tous les hashés possibles sur ce site.
+> Vous avez accès à un TAP réseau vous positionnant en Man-in-the-Middle entre un client et le serveur, et vous avez par ailleurs réussi à dérober le code source de l’application (sans la clé privée du serveur malheureusement …). Saurez-vous récupérer le secret que le client envoie au serveur ?
 
 **Challenge files:**
 
