@@ -86,7 +86,7 @@ Note that I neglicted the value `cst` in the key scheduling algorithm as it only
 
 **Attacking `TightSchedule`**
 
-With that cyclic property of $`R`$ in mind, let's see how it impacts the security of `TightSchedule`. Let's see progressively what happens.
+With that property of $`R`$ in mind, let's see how it impacts the security of `TightSchedule`. Let's see progressively what happens.
 
 We will first adopt some notations, and write $`k_i = \pi_i(k)`$ and  $`m_i = \pi_i(m)`$ the projections for the key and message $`k, m`$. Each round of `encrypt` consists on applying 5 times the round function $`R`$, so the first round will output
 
@@ -108,7 +108,7 @@ The next round is a bit more complex since the intermediate ciphertext is xored 
 c_2 := R^5(R(k)\oplus c_1).
 ```
 
- But there is something exciting happening here. Because the round key was shifted, the first 4-byte of $`R(k)\oplus c_1`$ will still only depend on the first 4-byte of the key and so forth. Thus, the same argument applies before and $`\pi_{i+2}(c_1)`$ only depend on $`k_i`$! Note that the index of $`\pi`$ has changed since $`R^5`$ has shifted once more the output. 
+ But there is something exciting happening here. Because the round key was shifted, the first 4-byte of $`R(k)\oplus c_1`$ will still only depend on the first 4-byte of the key and so forth. Thus, the same argument applies before and $`\pi_{i+2}(c_1)`$ only depends on $`k_i`$! Note that the index of $`\pi`$ has changed since $`R^5`$ has shifted once more the output. 
 
 We can obviously repeat the argument for the 10 rounds, writing $`E(k, m)`$ the function `TightSchedule` and $`c`$ the output , we can show by induction that
 
@@ -120,7 +120,7 @@ The attack is self-described as it suffices to bruteforce each 4-byte portion of
 
 **Implementing the attack**
 
-The attack itself is very simple because we are only required to exhaust (4 times) all potential 32-bit key, right? Well, the python's implementation was requiring more than *500* hours to run the $`2^{32}`$ calls of `encrypt`. I then panicked when I realized I would have to implement `TightSchedule` in C, knowing my taste for that programming langage. But I asked my best friend ChatGPT to do that for me and he was … AMAZING. Except some minor errors in `_round` he was able to write a complete (efficient) implementation of `encrypt`. Note that its outputs really depend on what you ask him so some work (dialogue) was obviously needed to end up with a good implementation.
+The attack itself is very simple because we are only required to exhaust (4 times) all potential 32-bit partial key, right? Well, the python's implementation was requiring more than *500* hours to run the $`2^{32}`$ calls of `encrypt`. I then panicked when I realized I would have to implement `TightSchedule` in C, knowing my taste for that programming langage. But I asked my best friend ChatGPT to do that for me and he was … AMAZING. Except some minor errors in `_round` he was able to write a complete (efficient) implementation of `encrypt`. Note that its outputs really depend on what you ask him so some work (dialogue) was obviously needed to end up with a good implementation.
 
 At the end, my implementation was requiring … 5 minutes to bruteforce each subkey. There is actually a trick to bruteforce each subkey within a single loop. Instead of computing $`E(k_i, m_i)`$ and checking on the $`\pi_{i+2}`$-projection, we can instead compute $`E(k_0 \oplus k_1 \oplus k_2 \oplus k_3, m)`$ and check each condition. This works because the $`\pi_{i+2}`$-projection of $`E(k_0 \oplus k_1 \oplus k_2 \oplus k_3, m)`$ only depend on $`E(k_i, m_i)`$ so we can update each $`k_i`$ in parallel. This speeds up the attack by a factor of 4 which is not negligeable.
 

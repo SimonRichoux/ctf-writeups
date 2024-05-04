@@ -137,3 +137,9 @@ sage: [float(h((i*G).x()) / h(return_a_b_c(i*G)[2])) for i in range (1, 10)]
 **Conclusion**
 
 Therefore, we proved that the solution corresponding the points of $`[n]G`$ increases with quadratic speed, so it was reasonible to expect the first positive solution to be the smallest possible one. This could be a complete rigorous proof if one could prove that $`\gcd(a + b, c) \approx c^{1/3}`$ , if any reader of this wu had an insight I would be very interested!
+
+**Additional Resources**
+
+- [Optimal bounds for the difference between the Néron-Tate height and the Weil height](https://www.math.leidenuniv.nl/~pbruin/Warwick.pdf)
+- [canonical height on an elliptic curve](https://planetmath.org/canonicalheightonanellipticcurve)
+- [two cubes](https://web.archive.org/web/20100125133830/http://maths.paisley.ac.uk/allanm/ecrnt/twocubes/twocubes.htm)
